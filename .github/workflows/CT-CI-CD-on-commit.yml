@@ -23,6 +23,7 @@ jobs:
         run: wget --no-check-certificate ${{ secrets.ASSETS_LINK }}
         
       - run: ls ${{ github.workspace }}
+      - run: ls ${{ github.workspace }}/EV2-x99luixGlD-2OQWE0uIBSAzQYkwo7m2q2l_COEAgrw?e=PnWkjA
         
       - name: Extract some files
         run: 7z x assets.zip
