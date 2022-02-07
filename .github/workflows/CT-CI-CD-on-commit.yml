@@ -20,8 +20,25 @@ jobs:
       - run: ls ${{ github.workspace }}
         
       - name: Download assets ⬇
-        run: curl "https://hogent-my.sharepoint.com/:u:/g/personal/ben_arts_student_hogent_be/EV2-x99luixGlD-2OQWE0uIBSAzQYkwo7m2q2l_COEAgrw?e=PnWkjA&download=1"
-        
+        run: |
+         curl 'https://hogent-my.sharepoint.com/personal/ben_arts_student_hogent_be/_layouts/15/download.aspx?SourceUrl=%2Fpersonal%2Fben%5Farts%5Fstudent%5Fhogent%5Fbe%2FDocuments%2FPersoonlijk%2FDocuments%2FGodot%2FDragon%2C%20fly%21%2Fassets%2Ezip' \
+         -H 'authority: hogent-my.sharepoint.com' \
+         -H 'pragma: no-cache' \
+         -H 'cache-control: no-cache' \
+         -H 'sec-ch-ua: " Not;A Brand";v="99", "Google Chrome";v="97", "Chromium";v="97"' \
+         -H 'sec-ch-ua-mobile: ?0' \
+         -H 'sec-ch-ua-platform: "Windows"' \
+         -H 'upgrade-insecure-requests: 1' \
+         -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36' \
+         -H 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9' \
+         -H 'service-worker-navigation-preload: true' \
+         -H 'sec-fetch-site: same-origin' \
+         -H 'sec-fetch-mode: navigate' \
+         -H 'sec-fetch-dest: iframe' \
+         -H 'referer: https://hogent-my.sharepoint.com/personal/ben_arts_student_hogent_be/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fben%5Farts%5Fstudent%5Fhogent%5Fbe%2FDocuments%2FPersoonlijk%2FDocuments%2FGodot%2FDragon%2C%20fly%21%2Fassets%2Ezip&parent=%2Fpersonal%2Fben%5Farts%5Fstudent%5Fhogent%5Fbe%2FDocuments%2FPersoonlijk%2FDocuments%2FGodot%2FDragon%2C%20fly%21' \
+         -H 'accept-language: nl-BE,nl-NL;q=0.9,nl;q=0.8,en-GB;q=0.7,en-US;q=0.6,en-BE;q=0.5,en;q=0.4' \
+         -H 'cookie: MicrosoftApplicationsTelemetryDeviceId=1bb89d9c-e22e-4b71-9642-2425fa71d08c; MicrosoftApplicationsTelemetryFirstLaunchTime=2022-02-07T15:13:18.548Z; MSFPC=GUID=f6d7af34c3264ae0b12ac0ef3a48dfc2&HASH=f6d7&LV=202104&V=4&LU=1619082878052; ExcelWacDataCenter=GEU2; WordWacDataCenter=GEU8; PowerPointWacDataCenter=GEU2; WacDataCenter=GEU2; rtFa=DtjX8LiGTSaHOlJ7+DOxjQ2rF+y1PkeFhIfLlauu3vQmNzYyNzRCRkQtMDRCRC00OTIzLTg3MDMtRUUxQkJFQjhGN0Y5IzEzMjg4NzAwNTg4Nzk4NDY3NiNEQTVCMUVBMC0wMDJDLTMwMDAtQzlDRC05MTM5MkYyRDY1N0QjQkVOLkFSVFMlNDBTVFVERU5ULkhPR0VOVC5CRVenQHLUoQv1y+eSCFEcIZjg9QP0kmXyd54nZ03Di5v8BRLSKDI85MqdhiKGfQ6eTBdv2rCDP8cLc+Y4OkRGBt57ikWqgYBbdG1hHAvR+pns5zOTb2QLyr/dopD5CvQ4X/2CkhWKzOyIclST3bpceHdVtDjFXLwzlvqZT4wF3m35TLKGAXjNgAy+0RdxMeR1Tqnq83zEFtI4+Argb2mQKNwNYhaTz3AwUF7zhnlNBrrHcBFqDlAJwU6VoB6GbOH9vYL7VkcvZ9WehMoTKs9TJI2QD0uwDxWxCf7IG0Axz6KFadjvbT+631oqHBtUQWH0zL78MbON+VcusaQW3bXeRgCaAAAA; FedAuth=77u/PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48U1A+VjExLDBoLmZ8bWVtYmVyc2hpcHwxMDAzMjAwMDlhMjY0YThjQGxpdmUuY29tLDAjLmZ8bWVtYmVyc2hpcHxiZW4uYXJ0c0BzdHVkZW50LmhvZ2VudC5iZSwxMzI2MzE0OTQxMjAwMDAwMDAsMTMyMjU1NDc5MzgwMDAwMDAwLDEzMjg5MTMyNTg4NzgyODQxMCw3OC4yMS45OS4yMDUsNjcsNzYyNzRiZmQtMDRiZC00OTIzLTg3MDMtZWUxYmJlYjhmN2Y5LCw0MTZmNGIwMi0zN2NhLTQyNzgtOGU2Yy1hMjFkMDNlYWFkMWQsZGE1YjFlYTAtMDAyYy0zMDAwLWM5Y2QtOTEzOTJmMmQ2NTdkLGRhNWIxZWEwLTAwMmMtMzAwMC1jOWNkLTkxMzkyZjJkNjU3ZCwsMCwxMzI4ODc4Njk4ODc1MTU4ODYsMTMyODg5NTk3ODg3NTE1ODg2LCwsZXlKNGJYTmZZMk1pT2lKYlhDSkRVREZjSWwwaUxDSjRiWE5mYzNOdElqb2lNU0lzSW5CeVpXWmxjbkpsWkY5MWMyVnlibUZ0WlNJNkltSmxiaTVoY25SelFITjBkV1JsYm5RdWFHOW5aVzUwTG1KbEluMD0sMjY1MDQ2Nzc0Mzk5OTk5OTk5OSwxMzI4ODcwMDU4ODAwMDAwMDAsYzBkYmU0ZGQtYzI2NC00ZGI5LWI5M2ItOTdkMzIzMmJhMGFhLCwsLCwsMCxOUi9aTUFhVEpIU2t3Vi85Y3Nab2RoVFBTelphb1ZNM1MwUHJGK1daZnl5Y2E5MDlmZlBxMWtIYUtBTHc2UTI0SDlKWDZZUkNST1pWcXhYNGtOMksyWkNieFE1WjkwN3M5ZUVZUFYxaDNoNVh0NGl6cVk4TTlTbXpkU1p2Y3EzaU9POVV6ZTU5TXVUSXFuaEtDYVRwa3ZZck84VWJXd2N5QS92ZlBrNkhiaDBiTDJRR0UvZk83bFI3STBQZmh6dmx6QnFrd3lId1hCVU9JaDBkTENUdzBlRkhMaWc4QVZ1SzlqZ3RxWVZjK25GT1VKaGNhbFJ1TWVRN2RBcDdXM2dQVDNMeFJLVUt6cXFJZWI4UWZPeGpSK1RkYksyZEY2VTUzR0hvVEdob1d0eGcxNzM5Y0U4UGpXclgxUlh6akI5ZjIyTkIwd3psWjluT0RtK0JPSVRCcUE9PTwvU1A+; CCSInfo=MTItMi0yMDIyIDEwOjM2OjA4l/YGRq/yvBsO0f/XVZQ8MouAkXwmupnezk/SUZhkZFqMX4Y+akOF1pS54vEO8QnntM0oBZZ35EwMILUHXjuasOFVL0QpsZerSepxsKrTWuovZ0wgqCt7TssOIvKVH4Pv+rB6ruxAByBf7/DFQLEkGqtTgAmurJTxgsJe0cp9WK8IdsfgVQzyUeD2gx4qbsXGT0HI08M35y1kJi/CqkxB2W5KDcY8Aq4XH/Dn/iaL7esVYNybUXWQJHfN7FpFaJgY+Deq55m81nEkwA2vhpCA0QY/JouANQbxe9msP4DElvjpov20i+nAjXC4LBGzck+LUivmz16U1DmXqAw98xg9ShIAAAA=; odbn=1; KillSwitchOverrides_enableKillSwitches=; KillSwitchOverrides_disableKillSwitches=; cucg=0; WSS_FullScreenMode=false' \
+         --compressed
       - run: ls ${{ github.workspace }}
       - run: ls ${{ github.workspace }}/EV2-x99luixGlD-2OQWE0uIBSAzQYkwo7m2q2l_COEAgrw?e=PnWkjA
         
