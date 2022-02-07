@@ -25,10 +25,12 @@ jobs:
       - name: view files before
         id: before
         run: ls ${{ github.workspace }}
-      - name: Download via wget
-        uses: wei/wget@v1.1.1
-        with:
-          args: -O ${{ github.workspace }}/assets.zip ${{ secrets.ASSETS_LINK }}
+#       - name: Download via wget
+#         uses: wei/wget@v1.1.1
+#         with:
+#           args: -O ${{ github.workspace }}/assets.zip ${{ secrets.ASSETS_LINK }}
+      - name: download
+        run: wget -O assets.zip ${{ secrets.ASSETS_LINK }}
       - name: view files after
         id: after
         run: ls ${{ github.workspace }}
