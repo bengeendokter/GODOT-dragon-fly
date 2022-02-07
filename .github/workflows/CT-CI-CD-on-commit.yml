@@ -16,13 +16,16 @@ jobs:
     steps:
       - name: Checkout ✔
         uses: actions/checkout@v2
+      
+      - run: ls ${{ github.workspace }}
+        
       - name: Download assets ⬇
-        run: wget -O assets.zip ${{ secrets.ASSETS_LINK }}
+        run: wget ${{ secrets.ASSETS_LINK }}
+        
+      - run: ls ${{ github.workspace }}
         
       - name: Extract some files
         run: 7z x assets.zip
-        
-      - run: ls ${{ github.workspace }}
         
       - name: Upload Artifact assets ⬆
         uses: actions/upload-artifact@v2
