@@ -55,6 +55,12 @@ jobs:
         with:
           name: assets
           path: ${{ github.workspace }}/assets
+          
+      - name: Control assets
+        run: |
+          ls ${{ github.workspace }}
+          ls ${{ github.workspace }}/assets
+          
       - name: Setup ⚙
         run: |
           mkdir -v -p ~/.local/share/godot/templates
