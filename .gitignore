@@ -1,0 +1,6 @@
+# directories
+build/
+assets/
+
+# secrets
+.env

@@ -1,0 +1,84 @@
+name: "CT/CI/CD on commit."
+on:
+  push:
+    branches:
+      - '**'
+
+env:
+  GODOT_VERSION: 3.4.2
+  GAME_NAME: dragon-fly
+
+jobs:
+
+  run-tests:
+    name: Run GUT tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Docker test
+        uses: ceceppa/godot-gut-ci@master
+        with:
+          godot_version: ${{ env.GODOT_VERSION }}
+          unit_test: res://test/unit # specify the path for the unit tests
+
+  export-web:
+#     if: ${{ false }}  # disable for now
+    name: Web Export
+    runs-on: ubuntu-latest
+    needs:
+      - run-tests
+    container:
+      image: barichello/godot-ci:3.4.2
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+      - name: Web Build
+        run: |
+          mkdir -v -p build/web
+          godot -v --export "HTML5" build/web/index.html
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: web
+          path: build/web
+
+  gh-pages:
+    name: Github Pages deploy
+    runs-on: ubuntu-latest
+    needs:
+      - export-web
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: web
+          path: build/web
+      # Installing rsync is needed in order to deploy to GitHub Pages. Without it, the build will fail.
+      - name: Install rsync 📚
+        run: |
+          sudo apt-get update && sudo apt-get install -y rsync
+      - name: Deploy to GitHub Pages 🚀
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: build/web # The folder the action should deploy.
+  
+  delete-artifacts:
+    name: Delete Artifacts
+    runs-on: ubuntu-latest
+    needs:
+      - gh-pages
+    steps:
+      - name: Delete web
+        uses: GeekyEggo/delete-artifact@v1.0.0
+        with:
+          name: |
+            web
