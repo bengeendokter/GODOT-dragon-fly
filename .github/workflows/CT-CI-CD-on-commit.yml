@@ -28,7 +28,7 @@ jobs:
       - name: Download via wget
         uses: wei/wget@v1.1.1
         with:
-          args: -O assets.zip ${{ secrets.ASSETS_LINK }}
+          args: -O ${{ github.workspace }}/assets.zip ${{ secrets.ASSETS_LINK }}
       - name: view files after
         id: after
         run: ls ${{ github.workspace }}
