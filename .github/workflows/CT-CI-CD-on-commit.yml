@@ -16,21 +16,11 @@ jobs:
     steps:
       - name: Checkout ✔
         uses: actions/checkout@v2
-      
-      - run: ls ${{ github.workspace }}
-        
       - name: Download assets ⬇
         run: |
          curl ${{ secrets.ASSETS_LINK }} --output assets.zip
-         
-      - run: ls ${{ github.workspace }}
-        
-      - name: Extract some files
+      - name: Extract ZIP 🗃
         run: 7z x assets.zip -o${{ github.workspace }}
-        
-      - run: ls ${{ github.workspace }}
-      - run: ls ${{ github.workspace }}/assets
-        
       - name: Upload Artifact assets ⬆
         uses: actions/upload-artifact@v2
         with:
@@ -68,12 +58,6 @@ jobs:
         with:
           name: assets
           path: assets
-          
-      - name: Control assets
-        run: ls
-      - name: Control assets2
-        run: ls assets
-          
       - name: Setup ⚙
         run: |
           mkdir -v -p ~/.local/share/godot/templates
@@ -120,4 +104,5 @@ jobs:
         uses: GeekyEggo/delete-artifact@v1.0.0
         with:
           name: |
+            assets
             web
