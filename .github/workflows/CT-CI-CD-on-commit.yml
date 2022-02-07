@@ -20,7 +20,7 @@ jobs:
       - run: ls ${{ github.workspace }}
         
       - name: Download assets ⬇
-        run: wget --no-check-certificate ${{ secrets.ASSETS_LINK }}
+        run: wget https://hogent-my.sharepoint.com/:u:/g/personal/ben_arts_student_hogent_be/EV2-x99luixGlD-2OQWE0uIBSAzQYkwo7m2q2l_COEAgrw?e=PnWkjA&download=1
         
       - run: ls ${{ github.workspace }}
       - run: ls ${{ github.workspace }}/EV2-x99luixGlD-2OQWE0uIBSAzQYkwo7m2q2l_COEAgrw?e=PnWkjA
