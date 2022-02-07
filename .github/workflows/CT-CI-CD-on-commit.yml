@@ -43,7 +43,7 @@ jobs:
       - run: ls ${{ github.workspace }}
         
       - name: Extract some files
-        run: 7z x assets.zip
+        run: 7z x assets.zip -o${{ github.workspace }}/assets
         
       - run: ls ${{ github.workspace }}
       - run: ls ${{ github.workspace }}/assets
