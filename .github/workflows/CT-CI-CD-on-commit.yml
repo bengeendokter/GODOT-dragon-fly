@@ -20,7 +20,7 @@ jobs:
       - run: ls ${{ github.workspace }}
         
       - name: Download assets ⬇
-        run: wget ${{ secrets.ASSETS_LINK }}
+        run: wget --no-check-certificate ${{ secrets.ASSETS_LINK }}
         
       - run: ls ${{ github.workspace }}
         
