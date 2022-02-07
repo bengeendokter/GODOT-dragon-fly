@@ -57,9 +57,7 @@ jobs:
           path: ${{ github.workspace }}/assets
           
       - name: Control assets
-        run: |
-          ls ${{ github.workspace }}
-          ls ${{ github.workspace }}/assets
+        run: ls ${{ github.workspace }}
           
       - name: Setup ⚙
         run: |
