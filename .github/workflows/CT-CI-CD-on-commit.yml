@@ -22,19 +22,19 @@ jobs:
         run: echo "hello2"
       - name: view files before
         id: before
-        run: ls
+        run: ls ${{ github.workspace }}
       - name: Download via wget
         uses: wei/wget@v1.1.1
         with:
           args: -O assets.zip ${{ secrets.ASSETS_LINK }}
       - name: view files after
         id: after
-        run: ls
+        run: ls ${{ github.workspace }}
       - name: Upload Artifact assets
         uses: actions/upload-artifact@v2
         with:
           name: assets
-          path: ./assets.zip
+          path: ${{ github.workspace }}/assets.zip
 
   run-tests:
     name: Run GUT tests
