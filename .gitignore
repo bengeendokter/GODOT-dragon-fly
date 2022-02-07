@@ -1,7 +1,6 @@
 # directories
 build/
 assets/
-assets.zip
 
 # secrets
 .env
