@@ -22,7 +22,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: assets
-          path: assets.zip
+          path: ./assets.zip
 
   run-tests:
     name: Run GUT tests
