@@ -14,6 +14,8 @@ jobs:
     name: Download assets
     runs-on: ubuntu-latest
     steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
       - name: echo test1
         run: echo "hello1"
       - name: view files before
