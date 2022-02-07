@@ -20,7 +20,7 @@ jobs:
       - run: ls ${{ github.workspace }}
         
       - name: Download assets ⬇
-        run: wget https://hogent-my.sharepoint.com/personal/ben_arts_student_hogent_be/_layouts/15/download.aspx?SourceUrl=%2Fpersonal%2Fben%5Farts%5Fstudent%5Fhogent%5Fbe%2FDocuments%2FPersoonlijk%2FDocuments%2FGodot%2FDragon%2C%20fly%21%2Fassets%2Ezip
+        run: curl "https://hogent-my.sharepoint.com/:u:/g/personal/ben_arts_student_hogent_be/EV2-x99luixGlD-2OQWE0uIBSAzQYkwo7m2q2l_COEAgrw?e=PnWkjA&download=1"
         
       - run: ls ${{ github.workspace }}
       - run: ls ${{ github.workspace }}/EV2-x99luixGlD-2OQWE0uIBSAzQYkwo7m2q2l_COEAgrw?e=PnWkjA
