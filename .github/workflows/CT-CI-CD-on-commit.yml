@@ -14,14 +14,20 @@ jobs:
     name: Download assets
     runs-on: ubuntu-latest
     steps:
-      - name: view files
+      - name: view files before
+        id: before
         run: ls
+      - name: show output
+        run: echo ${{join(steps.before.outputs.*, '\n')}}
       - name: Download via wget
         uses: wei/wget@v1.1.1
         with:
           args: -O assets.zip ${{ secrets.ASSETS_LINK }}
       - name: view files after
+        id: after
         run: ls
+      - name: show output2
+        run: echo ${{join(steps.after.outputs.*, '\n')}}
       - name: Upload Artifact assets
         uses: actions/upload-artifact@v2
         with:
