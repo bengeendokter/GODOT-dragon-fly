@@ -10,7 +10,7 @@ env:
 
 jobs:
   download-assets:
-    name: Github Action for wget
+    name: Download assets
     runs-on: ubuntu-latest
     steps:
       - name: Download via wget
@@ -21,7 +21,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: assets
-          path: assets
+          path: assets.zip
 
   run-tests:
     name: Run GUT tests
