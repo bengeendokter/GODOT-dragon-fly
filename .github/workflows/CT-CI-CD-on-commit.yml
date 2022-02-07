@@ -11,30 +11,14 @@ env:
 jobs:
   download-assets:
 #     if: ${{ false }}  # disable for now
-    name: Download assets
+    name: Download Assets
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository code
+      - name: Checkout ✔
         uses: actions/checkout@v2
-      - name: echo test1
-        run: echo "hello1"
-      - name: view files before
-        run: echo '::echo::on'
-      - name: echo test2
-        run: echo "hello2"
-      - name: view files before
-        id: before
-        run: ls ${{ github.workspace }}
-#       - name: Download via wget
-#         uses: wei/wget@v1.1.1
-#         with:
-#           args: -O ${{ github.workspace }}/assets.zip ${{ secrets.ASSETS_LINK }}
-      - name: download
+      - name: Download assets ⬇
         run: wget -O assets.zip ${{ secrets.ASSETS_LINK }}
-      - name: view files after
-        id: after
-        run: ls ${{ github.workspace }}
-      - name: Upload Artifact assets
+      - name: Upload Artifact assets ⬆
         uses: actions/upload-artifact@v2
         with:
           name: assets
@@ -44,9 +28,9 @@ jobs:
     name: Run GUT tests
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout ✔
         uses: actions/checkout@v2
-      - name: Docker test
+      - name: GUT Testing 🧪
         uses: ceceppa/godot-gut-ci@master
         with:
           godot_version: ${{ env.GODOT_VERSION }}
@@ -62,36 +46,36 @@ jobs:
     container:
       image: barichello/godot-ci:3.4.2
     steps:
-      - name: Checkout
+      - name: Checkout ✔
         uses: actions/checkout@v2
         with:
           lfs: true
-      - name: Download Artifact assets
+      - name: Download Artifact assets ⬇
         uses: actions/download-artifact@v2
         with:
           name: assets
           path: assets
-      - name: Setup
+      - name: Setup ⚙
         run: |
           mkdir -v -p ~/.local/share/godot/templates
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
-      - name: Web Build
+      - name: Web Build 📦
         run: |
           mkdir -v -p build/web
           godot -v --export "HTML5" build/web/index.html
-      - name: Upload Artifact web
+      - name: Upload Artifact web ⬆
         uses: actions/upload-artifact@v2
         with:
           name: web
           path: build/web
 
   gh-pages:
-    name: Github Pages deploy
+    name: Github Pages Deploy
     runs-on: ubuntu-latest
     needs:
       - export-web
     steps:
-      - name: Download Artifact web
+      - name: Download Artifact web ⬇
         uses: actions/download-artifact@v2
         with:
           name: web
@@ -113,9 +97,9 @@ jobs:
     needs:
       - gh-pages
     steps:
-      - name: Delete web
+      - name: Delete assets and web 🗑
         uses: GeekyEggo/delete-artifact@v1.0.0
         with:
           name: |
-            web
             assets
+            web
