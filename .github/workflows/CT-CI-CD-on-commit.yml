@@ -58,6 +58,8 @@ jobs:
           
       - name: Control assets
         run: ls
+      - name: Control assets2
+        run: ls assets
           
       - name: Setup ⚙
         run: |
