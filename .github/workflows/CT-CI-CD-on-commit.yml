@@ -21,6 +21,8 @@ jobs:
          curl ${{ secrets.ASSETS_LINK }} --output assets.zip
       - name: Extract ZIP 🗃
         run: 7z x assets.zip -o${{ github.workspace }}
+      - name: See Files 📄
+        run: ls ${{ github.workspace }}
       - name: Upload Artifact assets ⬆
         uses: actions/upload-artifact@v2
         with:
