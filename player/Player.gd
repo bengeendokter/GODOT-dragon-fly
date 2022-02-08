@@ -10,7 +10,7 @@ var is_up := true
 
 func _process(_delta) -> void:
 	
-	if Input.is_action_pressed("ui_accept") and !tween.is_active():
+	if Input.is_action_pressed("player_action") and !tween.is_active():
 		tween.interpolate_property(self
 		, "position"
 		, null
