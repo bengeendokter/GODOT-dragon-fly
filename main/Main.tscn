@@ -37,6 +37,7 @@ motion_scale = Vector2( 0, 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="ParallaxBackground/ParallaxLayer"]
 frames = SubResource( 2 )
+frame = 1
 playing = true
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]

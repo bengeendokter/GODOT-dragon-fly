@@ -112,6 +112,7 @@ script = ExtResource( 2 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 22 )
 animation = "idle"
+frame = 1
 playing = true
 flip_h = true
 
@@ -120,3 +121,6 @@ position = Vector2( -14, 7 )
 shape = SubResource( 23 )
 
 [node name="MovePlayer" type="Tween" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
+[connection signal="tween_completed" from="MovePlayer" to="." method="_on_MovePlayer_tween_completed"]
