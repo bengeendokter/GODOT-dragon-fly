@@ -15,7 +15,7 @@
 [ext_resource path="res://assets/images/background/Volcano Night anim. 03.png" type="Texture" id=13]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=14]
 [ext_resource path="res://HUD/Hud.tscn" type="PackedScene" id=15]
-[ext_resource path="res://HUD/Hud.gd" type="Script" id=16]
+[ext_resource path="res://HUD/HUD.gd" type="Script" id=16]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -37,7 +37,7 @@ motion_scale = Vector2( 0, 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="ParallaxBackground/ParallaxLayer"]
 frames = SubResource( 2 )
-frame = 1
+frame = 3
 playing = true
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -130,5 +130,10 @@ position = Vector2( 576, 192 )
 
 [node name="DifficultyTimer" type="Timer" parent="Timers"]
 
-[node name="Hud" parent="." instance=ExtResource( 15 )]
+[node name="HUD" parent="." instance=ExtResource( 15 )]
 script = ExtResource( 16 )
+
+[node name="ScoreTimer" type="Timer" parent="HUD"]
+autostart = true
+
+[connection signal="timeout" from="HUD/ScoreTimer" to="." method="_on_ScoreTimer_timeout"]

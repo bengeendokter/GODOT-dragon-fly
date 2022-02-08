@@ -1,5 +1,16 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://HUD/Hud.tres" type="Theme" id=1]
 
 [node name="Hud" type="CanvasLayer"]
 
-[node name="ScoreTimer" type="Timer" parent="."]
+[node name="Score" type="Label" parent="."]
+margin_right = 506.0
+margin_bottom = 44.0
+theme = ExtResource( 1 )
+text = "0123465789"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
