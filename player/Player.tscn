@@ -120,5 +120,8 @@ shape = SubResource( 23 )
 
 [node name="MovePlayer" type="Tween" parent="."]
 
+[node name="SpawnPlayer" type="Tween" parent="."]
+
 [connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
 [connection signal="tween_completed" from="MovePlayer" to="." method="_on_MovePlayer_tween_completed"]
+[connection signal="tween_completed" from="SpawnPlayer" to="." method="_on_SpawnPlayer_tween_completed"]
