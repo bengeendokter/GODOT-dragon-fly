@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://main/Parallax.gd" type="Script" id=1]
 [ext_resource path="res://main/Main.gd" type="Script" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://assets/music/journey village loop.wav" type="AudioStream" id=12]
 [ext_resource path="res://assets/images/background/Volcano Night anim. 03.png" type="Texture" id=13]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=14]
+[ext_resource path="res://HUD/Hud.tscn" type="PackedScene" id=15]
+[ext_resource path="res://HUD/Hud.gd" type="Script" id=16]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -25,32 +27,6 @@ animations = [ {
 
 [node name="Main" type="Node"]
 script = ExtResource( 2 )
-
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -187.0
-margin_top = 37.0
-margin_right = 230.0
-margin_bottom = 229.0
-color = Color( 0, 1, 0.392157, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ColorRect2" type="ColorRect" parent="."]
-visible = false
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -178.0
-margin_top = 103.0
-margin_right = -105.0
-margin_bottom = 174.0
-color = Color( 0, 0.0627451, 1, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 offset = Vector2( 256, 128 )
@@ -131,3 +107,27 @@ stream = ExtResource( 12 )
 autoplay = true
 
 [node name="Player" parent="." instance=ExtResource( 14 )]
+position = Vector2( 96, 64 )
+
+[node name="Postitions" type="Node" parent="."]
+
+[node name="UpPosPlayer" type="Position2D" parent="Postitions"]
+position = Vector2( 96, 64 )
+
+[node name="UpPosMob" type="Position2D" parent="Postitions"]
+position = Vector2( 576, 64 )
+
+[node name="DownPosPlayer" type="Position2D" parent="Postitions"]
+position = Vector2( 96, 192 )
+
+[node name="DownPosMob" type="Position2D" parent="Postitions"]
+position = Vector2( 576, 192 )
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="MobTimer" type="Timer" parent="Timers"]
+
+[node name="DifficultyTimer" type="Timer" parent="Timers"]
+
+[node name="Hud" parent="." instance=ExtResource( 15 )]
+script = ExtResource( 16 )
