@@ -21,7 +21,7 @@ jobs:
         run: |
          curl ${{ secrets.ASSETS_LINK }} --output assets.zip
       - name: Extract ZIP 🗃
-        run: 7z x assets.zip -o${{ github.workspace }}/assets
+        run: 7z x assets.zip -o${{ github.workspace }}
       - name: See Root Files 📄
         run: ls ${{ github.workspace }}
       - name: See Assets Files 🖼
