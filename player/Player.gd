@@ -22,6 +22,17 @@ func _process(_delta) -> void:
 		tween.start()
 
 
+func play_idle_animation():
+	$AnimatedSprite.play("idle")
+
+
+func play_death_animation():
+	$AnimatedSprite.play("death")
+
+func stop_animations():
+	$AnimatedSprite.stop()
+
+
 func _on_MovePlayer_tween_completed(_object, _key) -> void:
 	tween.remove_all()
 	is_up = !is_up

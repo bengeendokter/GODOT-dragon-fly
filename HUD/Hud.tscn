@@ -14,3 +14,15 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Button" type="Button" parent="."]
+visible = false
+margin_left = 180.0
+margin_top = 116.0
+margin_right = 318.0
+margin_bottom = 154.0
+theme = ExtResource( 1 )
+text = "test"
+__meta__ = {
+"_edit_use_anchors_": false
+}

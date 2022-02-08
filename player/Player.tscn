@@ -112,8 +112,6 @@ script = ExtResource( 2 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 22 )
 animation = "idle"
-frame = 2
-playing = true
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
