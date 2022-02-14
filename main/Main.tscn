@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://main/Parallax.gd" type="Script" id=1]
 [ext_resource path="res://main/Main.gd" type="Script" id=2]
@@ -15,7 +15,9 @@
 [ext_resource path="res://assets/images/background/Volcano Night anim. 03.png" type="Texture" id=13]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=14]
 [ext_resource path="res://HUD/HUD.tscn" type="PackedScene" id=15]
+[ext_resource path="res://HUD/Pause.gd" type="Script" id=16]
 [ext_resource path="res://mob/Mob.tscn" type="PackedScene" id=17]
+[ext_resource path="res://main/Input.gd" type="Script" id=18]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -24,8 +26,6 @@ animations = [ {
 "name": "default",
 "speed": 3.0
 } ]
-
-[sub_resource type="RectangleShape2D" id=3]
 
 [node name="Main" type="Node"]
 script = ExtResource( 2 )
@@ -108,6 +108,7 @@ texture = ExtResource( 10 )
 stream = ExtResource( 12 )
 
 [node name="Player" parent="." instance=ExtResource( 14 )]
+visible = false
 position = Vector2( -64, 64 )
 z_index = 1
 
@@ -132,23 +133,43 @@ position = Vector2( 576, 192 )
 
 [node name="MobTimer" type="Timer" parent="Timers"]
 wait_time = 2.0
-autostart = true
 
 [node name="DifficultyTimer" type="Timer" parent="Timers"]
 wait_time = 4.0
-autostart = true
+
+[node name="ScoreTimer" type="Timer" parent="Timers"]
+
+[node name="PauseLayer" type="CanvasLayer" parent="."]
+
+[node name="Pause" type="Control" parent="PauseLayer"]
+pause_mode = 2
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BlackOverlay" type="ColorRect" parent="PauseLayer/Pause"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.352941 )
 
 [node name="HUD" parent="." instance=ExtResource( 15 )]
+pause_mode = 2
+layer = 2
 
-[node name="ScoreTimer" type="Timer" parent="HUD"]
-
-[node name="StaticBody2D" type="Area2D" parent="."]
-position = Vector2( 322, 66 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource( 3 )
+[node name="Input" type="Node" parent="."]
+pause_mode = 2
+script = ExtResource( 18 )
 
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="Timers/MobTimer" to="." method="_on_MobTimer_timeout"]
+[connection signal="timeout" from="Timers/DifficultyTimer" to="." method="_on_DifficultyTimer_timeout"]
+[connection signal="timeout" from="Timers/ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
+[connection signal="pause" from="HUD" to="." method="pause"]
+[connection signal="screen_button" from="HUD" to="." method="move_player"]
 [connection signal="start_game" from="HUD" to="." method="start_game"]
-[connection signal="timeout" from="HUD/ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
+[connection signal="move_player" from="Input" to="." method="move_player"]
+[connection signal="pause" from="Input" to="." method="pause"]

@@ -21,4 +21,4 @@ func on_hit():
 	play_death_animation()
 	yield($AnimatedSprite, "animation_finished")
 	hide()
-	free()
+	queue_free()

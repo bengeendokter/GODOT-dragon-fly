@@ -1,6 +1,8 @@
 extends CanvasLayer
 
 signal start_game
+signal screen_button
+signal pause
 
 
 func set_score(score : int):
@@ -21,3 +23,27 @@ func hide_game_over():
 
 func grab_focus():
 	$Button.grab_focus()
+
+
+func hide_credits_btn():
+	$Credits.hide()
+
+
+func show_credits_btn():
+	$Credits.show()
+
+
+func hide_pause_btn():
+	$Pause.hide()
+
+
+func show_pause_btn():
+	$Pause.show()
+
+
+func _on_ScreenButton_pressed():
+	 emit_signal("screen_button")
+
+
+func _on_Pause_pressed():
+	emit_signal("pause")

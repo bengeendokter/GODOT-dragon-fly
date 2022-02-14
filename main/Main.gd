@@ -5,10 +5,13 @@ onready var pos_up_mob : Vector2 = $Postitions/UpPosMob.position
 onready var pos_down_mob : Vector2 = $Postitions/DownPosMob.position
 var mob_positions : Array
 
+var is_music_enabled = false
+var playing = false
+
 var upper_mob_speed = -300.0
 var lower_mob_speed = -290.0
 
-onready var mobtimer := $MobTimer
+onready var mobtimer := $Timers/MobTimer
 
 var score := 0
 
@@ -23,35 +26,76 @@ const TIMER_STEP = 0.10
 func _ready():
 	mob_positions = [pos_up_mob, pos_down_mob]
 	$ParallaxBackground/ParallaxLayer/VulcanoAnimation.play()
+	set_score(0)
 	randomize()
-	start_game()
 
 
 func start_game():
 	get_tree().call_group("mob", "free")
-	score = 0
+	set_score(0)
+	_reset_speeds()
 	$HUD.hide_game_over()
+	$HUD.hide_credits_btn()
+	$HUD.show_pause_btn()
 	$Player.spawn_player()
-	$HUD.set_score(score)
 	$Player.play_idle_animation()
 	get_tree().call_group("parallax", "start_moving")
-	$HUD/ScoreTimer.start()
+	$Timers/ScoreTimer.start()
 	$Timers/MobTimer.start()
-	$BackgroundMusic.play()
+	$Timers/DifficultyTimer.start()
+	play_music()
+	playing = true
 
 
 func game_over():
-	$HUD/ScoreTimer.stop()
-	$BackgroundMusic.stop()
+	$Timers/ScoreTimer.stop()
+	$HUD.show_credits_btn()
+	$HUD.hide_pause_btn()
+	stop_music()
 	$Timers/MobTimer.stop()
+	$Timers/DifficultyTimer.stop()
 	$HUD.show_game_over()
 	$HUD.grab_focus()
 	get_tree().call_group("parallax", "stop_moving")
+	playing = false
+
+
+func play_music():
+	if is_music_enabled:
+		$BackgroundMusic.play()
+
+
+func stop_music():
+	$BackgroundMusic.stop()
+
+
+func set_score(new_score : int) -> void:
+	score = new_score
+	$HUD.set_score(score)
+
+
+func move_player():
+	if playing:
+		$Player.move_player()
+
+# TODO bug in pause menu: move_action in menu is played after pause
+# can set paused as playing = false but than unpausing is not posible
+func pause():
+	if playing:
+		if $PauseLayer/Pause.pause():
+			$HUD.show_credits_btn()
+		else:
+			$HUD.hide_credits_btn()
+
+
+func _reset_speeds():
+	upper_mob_speed = -300.0
+	lower_mob_speed = -290.0
+	mobtimer.wait_time = 2.0
 
 
 func _on_ScoreTimer_timeout():
-	score += 1
-	$HUD.set_score(score)
+	set_score(score + 1)
 
 
 func _on_MobTimer_timeout():
@@ -66,10 +110,11 @@ func _on_MobTimer_timeout():
 func _on_DifficultyTimer_timeout():
 	if upper_mob_speed > UPPER_MAX_MOB_SPEED:
 		upper_mob_speed = max(upper_mob_speed - SPEED_STEP, UPPER_MAX_MOB_SPEED)
-	
+
 	if lower_mob_speed > LOWER_MAX_MOB_SPEED:
 		lower_mob_speed = max(lower_mob_speed - SPEED_STEP, LOWER_MAX_MOB_SPEED)
 	
+	get_tree().call_group("parallax", "increse_speed", 1)
+	
 	if mobtimer.wait_time > MIN_MOB_TIMER_WAIT:
 		mobtimer.wait_time = max(mobtimer.wait_time - TIMER_STEP, MIN_MOB_TIMER_WAIT)
-

@@ -13,6 +13,7 @@ var is_up := true
 
 func spawn_player():
 	set_position(position_spawn)
+	show()
 
 	spawn_tween.interpolate_property(self
 	, "position"
@@ -25,9 +26,9 @@ func spawn_player():
 	spawn_tween.start()
 
 
-func _process(_delta) -> void:
-	if Input.is_action_pressed("player_action") and !tween.is_active() \
-		and !spawn_tween.is_active() and $AnimatedSprite.animation != "death":
+func move_player():
+	if !tween.is_active() and !spawn_tween.is_active() \
+		and $AnimatedSprite.animation != "death":
 		tween.interpolate_property(self
 		, "position"
 		, null
@@ -59,16 +60,14 @@ func _on_MovePlayer_tween_completed(_object, _key) -> void:
 func _on_SpawnPlayer_tween_completed(_object, _key):
 	spawn_tween.remove_all()
 	is_up = true
+	set_monitoring(true)
 
 
 func _on_Player_body_entered(body):
-	print("ded")
 	tween.remove_all()
-	spawn_tween.remove_all()
 	play_death_animation()
 	body.on_hit()
 	yield($AnimatedSprite, "animation_finished")
-	set_position(position_spawn)
+	hide()
 	emit_signal("hit")
-	print("yes")
-
+	set_monitoring(false)
