@@ -171,5 +171,6 @@ script = ExtResource( 18 )
 [connection signal="pause" from="HUD" to="." method="pause"]
 [connection signal="screen_button" from="HUD" to="." method="move_player"]
 [connection signal="start_game" from="HUD" to="." method="start_game"]
+[connection signal="toggle_music" from="HUD" to="." method="toggle_music"]
 [connection signal="move_player" from="Input" to="." method="move_player"]
 [connection signal="pause" from="Input" to="." method="pause"]

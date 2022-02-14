@@ -36,6 +36,7 @@ func start_game():
 	_reset_speeds()
 	$HUD.hide_game_over()
 	$HUD.hide_credits_btn()
+	$HUD.hide_music_btn()
 	$HUD.show_pause_btn()
 	$Player.spawn_player()
 	$Player.play_idle_animation()
@@ -49,6 +50,7 @@ func start_game():
 func game_over():
 	$Timers/ScoreTimer.stop()
 	$HUD.show_credits_btn()
+	$HUD.show_music_btn()
 	$HUD.hide_pause_btn()
 	stop_music()
 	$Timers/MobTimer.stop()
@@ -76,13 +78,18 @@ func move_player():
 	if not $PauseLayer/Pause.is_paused():
 		$Player.move_player()
 
-# TODO bug in pause menu: move_action in menu is played after pause
-# can set paused as playing = false but than unpausing is not posible
+
 func pause():
 	if $PauseLayer/Pause.pause():
 		$HUD.show_credits_btn()
+		$HUD.show_music_btn()
 	else:
 		$HUD.hide_credits_btn()
+		$HUD.hide_music_btn()
+
+
+func toggle_music():
+	is_music_enabled = not is_music_enabled
 
 
 func _reset_speeds():
