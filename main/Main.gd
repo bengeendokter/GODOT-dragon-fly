@@ -6,7 +6,6 @@ onready var pos_down_mob : Vector2 = $Postitions/DownPosMob.position
 var mob_positions : Array
 
 var is_music_enabled = false
-var playing = false
 
 var upper_mob_speed = -300.0
 var lower_mob_speed = -290.0
@@ -27,6 +26,7 @@ func _ready():
 	mob_positions = [pos_up_mob, pos_down_mob]
 	$ParallaxBackground/ParallaxLayer/VulcanoAnimation.play()
 	set_score(0)
+	$HUD.grab_focus()
 	randomize()
 
 
@@ -44,7 +44,6 @@ func start_game():
 	$Timers/MobTimer.start()
 	$Timers/DifficultyTimer.start()
 	play_music()
-	playing = true
 
 
 func game_over():
@@ -57,7 +56,6 @@ func game_over():
 	$HUD.show_game_over()
 	$HUD.grab_focus()
 	get_tree().call_group("parallax", "stop_moving")
-	playing = false
 
 
 func play_music():
@@ -75,17 +73,16 @@ func set_score(new_score : int) -> void:
 
 
 func move_player():
-	if playing:
+	if not $PauseLayer/Pause.is_paused():
 		$Player.move_player()
 
 # TODO bug in pause menu: move_action in menu is played after pause
 # can set paused as playing = false but than unpausing is not posible
 func pause():
-	if playing:
-		if $PauseLayer/Pause.pause():
-			$HUD.show_credits_btn()
-		else:
-			$HUD.hide_credits_btn()
+	if $PauseLayer/Pause.pause():
+		$HUD.show_credits_btn()
+	else:
+		$HUD.hide_credits_btn()
 
 
 func _reset_speeds():
