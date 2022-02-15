@@ -50,6 +50,10 @@ func hide_music_btn():
 	$Music.hide()
 
 
+func hide_credits_window():
+	$CreditsWindow.hide()
+
+
 func _on_ScreenButton_pressed():
 	 emit_signal("screen_button")
 
@@ -60,3 +64,7 @@ func _on_Pause_pressed():
 
 func toggle_music():
 	emit_signal("toggle_music")
+
+
+func _on_Credits_pressed():
+	$CreditsWindow.visible = !$CreditsWindow.visible

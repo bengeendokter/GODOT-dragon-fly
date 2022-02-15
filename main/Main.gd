@@ -59,7 +59,7 @@ func game_over():
 	$HUD.grab_focus()
 	get_tree().call_group("parallax", "stop_moving")
 
-# TODO make toggle music work after pause and not only after restart
+
 func play_music():
 	if is_music_enabled:
 		$BackgroundMusic.play()
@@ -86,6 +86,7 @@ func pause():
 	else:
 		$HUD.hide_credits_btn()
 		$HUD.hide_music_btn()
+		$HUD.hide_credits_window()
 
 
 func toggle_music():
