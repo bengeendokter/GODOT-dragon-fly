@@ -32,6 +32,7 @@ jobs:
           path: assets
 
   run-tests:
+    if: ${{ false }}  # disable for now
     name: GUT Testing
     runs-on: ubuntu-latest
     steps:
