@@ -10,7 +10,7 @@ env:
 
 jobs:
   download-assets:
-#     if: ${{ false }}  # disable for now
+    if: ${{ false }}  # disable for now
     name: Download Assets
     runs-on: ubuntu-latest
     steps:
