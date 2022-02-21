@@ -89,8 +89,8 @@ func pause():
 		$HUD.hide_credits_window()
 
 
-func toggle_music():
-	is_music_enabled = not is_music_enabled
+func toggle_music(new_state):
+	is_music_enabled = not new_state
 	if is_music_enabled:
 		play_music()
 	else:

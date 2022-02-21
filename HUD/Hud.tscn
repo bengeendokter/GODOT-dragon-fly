@@ -1,8 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://HUD/HUD.tres" type="Theme" id=1]
 [ext_resource path="res://HUD/HUD.gd" type="Script" id=2]
 [ext_resource path="res://assets/fonts/clover-sans.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://HUD/Toggle_btn.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/images/HUD/sound on.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/HUD/sound off.png" type="Texture" id=6]
 
 [sub_resource type="StyleBoxEmpty" id=6]
 
@@ -97,24 +100,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Music" type="Button" parent="."]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -15.0
-margin_top = -38.0
-margin_right = 15.0
-margin_bottom = -10.0
-focus_mode = 0
-theme = ExtResource( 1 )
-custom_fonts/font = SubResource( 9 )
-shortcut_in_tooltip = false
-enabled_focus_mode = 0
-text = " M"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Music" parent="." instance=ExtResource( 4 )]
+on_icon = ExtResource( 5 )
+off_icon = ExtResource( 6 )
 
 [node name="CreditsWindow" type="WindowDialog" parent="."]
 anchor_left = 0.5
@@ -173,8 +161,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="ScreenButton" to="." method="_on_ScreenButton_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="Pause" to="." method="_on_Pause_pressed"]
-[connection signal="pressed" from="Music" to="." method="toggle_music"]
+[connection signal="new_state" from="Music" to="." method="toggle_music"]

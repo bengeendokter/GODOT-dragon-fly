@@ -62,8 +62,8 @@ func _on_Pause_pressed():
 	emit_signal("pause")
 
 
-func toggle_music():
-	emit_signal("toggle_music")
+func toggle_music(new_state):
+	emit_signal("toggle_music", new_state)
 
 
 func _on_Credits_pressed():
