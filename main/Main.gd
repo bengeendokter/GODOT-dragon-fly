@@ -5,7 +5,7 @@ onready var pos_up_mob : Vector2 = $Postitions/UpPosMob.position
 onready var pos_down_mob : Vector2 = $Postitions/DownPosMob.position
 var mob_positions : Array
 
-var is_music_enabled = false
+var is_music_enabled = true
 
 var upper_mob_speed = -300.0
 var lower_mob_speed = -290.0
@@ -90,6 +90,7 @@ func pause():
 
 
 func toggle_music(new_state):
+	print("hrhrh")
 	is_music_enabled = not new_state
 	if is_music_enabled:
 		play_music()
