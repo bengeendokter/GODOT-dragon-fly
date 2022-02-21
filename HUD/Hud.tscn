@@ -130,11 +130,11 @@ theme = ExtResource( 1 )
 custom_fonts/normal_font = SubResource( 10 )
 bbcode_enabled = true
 bbcode_text = "
-[center][u]creator[/u]
+[center][i]creator[/i][/center]
 
-wicling a.k.a. bengeendokter[/center]
+wicling a.k.a. bengeendokter
 
-[center][u]itch assets[/u][/center]
+[center][i]itch assets[/i][/center]
 
 background: Pixel Art Infinite Runner - Pack by edermunizz
 
@@ -142,7 +142,11 @@ font: Clover Sans by LemmaEOF
 
 music: journey village by Michael
 
-dragon sprite: Vimlark Asset Pack by Vimlark"
+dragon sprite: Vimlark Asset Pack by Vimlark
+
+[center][i]Special Thanks[/i][/center]
+
+Yoranator"
 text = "
 creator
 
@@ -156,7 +160,11 @@ font: Clover Sans by LemmaEOF
 
 music: journey village by Michael
 
-dragon sprite: Vimlark Asset Pack by Vimlark"
+dragon sprite: Vimlark Asset Pack by Vimlark
+
+Special Thanks
+
+Yoranator"
 __meta__ = {
 "_edit_use_anchors_": false
 }
