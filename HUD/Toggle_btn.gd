@@ -11,6 +11,7 @@ func _ready():
 func _on_ToggleBtn_toggled(button_pressed):
 	change_icon(button_pressed)
 
+
 func change_icon(is_pressed : bool):
 	var icon : Texture
 	icon = off_icon if is_pressed else on_icon
