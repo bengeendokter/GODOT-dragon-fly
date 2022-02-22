@@ -8,6 +8,7 @@ export(Texture) var off_icon
 func _ready():
 	$CenterContainer/Icon.texture = on_icon
 
+	
 func _on_ToggleBtn_toggled(button_pressed):
 	change_icon(button_pressed)
 
