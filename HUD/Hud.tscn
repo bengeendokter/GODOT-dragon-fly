@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://HUD/HUD.tres" type="Theme" id=1]
 [ext_resource path="res://HUD/HUD.gd" type="Script" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://HUD/Toggle_btn.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/images/HUD/sound on.png" type="Texture" id=5]
 [ext_resource path="res://assets/images/HUD/sound off.png" type="Texture" id=6]
+[ext_resource path="res://assets/images/HUD/pause.png" type="Texture" id=7]
+[ext_resource path="res://assets/images/HUD/play.png" type="Texture" id=8]
 
 [sub_resource type="StyleBoxEmpty" id=6]
 
@@ -85,20 +87,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Pause" type="Button" parent="."]
-margin_left = 472.0
-margin_top = 218.0
-margin_right = 502.0
-margin_bottom = 246.0
-focus_mode = 0
-theme = ExtResource( 1 )
-custom_fonts/font = SubResource( 9 )
-shortcut_in_tooltip = false
-enabled_focus_mode = 0
-text = " ||"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Pause" parent="." instance=ExtResource( 4 )]
+margin_left = 218.0
+margin_right = 246.0
+on_icon = ExtResource( 7 )
+off_icon = ExtResource( 8 )
 
 [node name="Music" parent="." instance=ExtResource( 4 )]
 on_icon = ExtResource( 5 )
@@ -125,14 +118,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 10.0
 margin_top = 2.0
-margin_bottom = -10.0
 theme = ExtResource( 1 )
 custom_fonts/normal_font = SubResource( 10 )
 bbcode_enabled = true
 bbcode_text = "
 [center][i]creator[/i][/center]
 
-wicling a.k.a. bengeendokter
+[center]wicling a.k.a. bengeendokter[/center]
 
 [center][i]itch assets[/i][/center]
 
@@ -146,7 +138,8 @@ dragon sprite: Vimlark Asset Pack by Vimlark
 
 [center][i]Special Thanks[/i][/center]
 
-Yoranator"
+[center]Yoranator[/center]
+"
 text = "
 creator
 
@@ -164,7 +157,8 @@ dragon sprite: Vimlark Asset Pack by Vimlark
 
 Special Thanks
 
-Yoranator"
+Yoranator
+"
 __meta__ = {
 "_edit_use_anchors_": false
 }
