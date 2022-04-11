@@ -5,6 +5,7 @@ signal new_state
 export(Texture) var on_icon
 export(Texture) var off_icon
 var pressed_state := false
+# TODO fix state problems
 
 func _ready():
 	$CenterContainer/Icon.texture = on_icon
