@@ -90,7 +90,6 @@ func pause():
 
 
 func toggle_music(new_state):
-	print("hrhrh")
 	is_music_enabled = not new_state
 	if is_music_enabled:
 		play_music()

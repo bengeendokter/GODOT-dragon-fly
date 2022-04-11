@@ -68,6 +68,12 @@ margin_left = -55.0
 margin_top = -24.0
 margin_right = 55.0
 margin_bottom = 24.0
+focus_neighbour_left = NodePath("../Pause")
+focus_neighbour_top = NodePath("../Music")
+focus_neighbour_right = NodePath("../Credits")
+focus_neighbour_bottom = NodePath("../Music")
+focus_next = NodePath("../Credits")
+focus_previous = NodePath("../Pause")
 theme = ExtResource( 1 )
 shortcut_in_tooltip = false
 text = "play"
@@ -80,6 +86,12 @@ margin_left = 10.0
 margin_top = 220.0
 margin_right = 84.0
 margin_bottom = 246.0
+focus_neighbour_left = NodePath("../Pause")
+focus_neighbour_top = NodePath("../Button")
+focus_neighbour_right = NodePath("../Music")
+focus_neighbour_bottom = NodePath("../Music")
+focus_next = NodePath("../Music")
+focus_previous = NodePath("../Button")
 theme = ExtResource( 1 )
 custom_fonts/font = SubResource( 9 )
 text = "credits"
@@ -90,10 +102,24 @@ __meta__ = {
 [node name="Pause" parent="." instance=ExtResource( 4 )]
 margin_left = 218.0
 margin_right = 246.0
+focus_neighbour_left = NodePath("../Music")
+focus_neighbour_top = NodePath("../Button")
+focus_neighbour_right = NodePath("../Credits")
+focus_neighbour_bottom = NodePath("../Button")
+focus_next = NodePath("../Button")
+focus_previous = NodePath("../Music")
+focus_mode = 2
 on_icon = ExtResource( 7 )
 off_icon = ExtResource( 8 )
 
 [node name="Music" parent="." instance=ExtResource( 4 )]
+focus_neighbour_left = NodePath("../Credits")
+focus_neighbour_top = NodePath("../Button")
+focus_neighbour_right = NodePath("../Pause")
+focus_neighbour_bottom = NodePath("../Button")
+focus_next = NodePath("../Pause")
+focus_previous = NodePath("../Credits")
+focus_mode = 2
 on_icon = ExtResource( 5 )
 off_icon = ExtResource( 6 )
 
@@ -174,5 +200,5 @@ __meta__ = {
 [connection signal="pressed" from="ScreenButton" to="." method="_on_ScreenButton_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Credits" to="." method="_on_Credits_pressed"]
-[connection signal="pressed" from="Pause" to="." method="_on_Pause_pressed"]
+[connection signal="new_state" from="Pause" to="." method="on_Pause_pressed"]
 [connection signal="new_state" from="Music" to="." method="toggle_music"]

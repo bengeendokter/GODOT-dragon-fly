@@ -4,12 +4,14 @@ signal new_state
 
 export(Texture) var on_icon
 export(Texture) var off_icon
+var pressed_state := false
 
 func _ready():
 	$CenterContainer/Icon.texture = on_icon
 
 	
-func _on_ToggleBtn_toggled(button_pressed):
+func _on_ToggleBtn_toggled(button_pressed := !pressed_state):
+	pressed_state = button_pressed
 	change_icon(button_pressed)
 
 

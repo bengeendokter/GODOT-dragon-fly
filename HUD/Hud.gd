@@ -57,9 +57,20 @@ func hide_credits_window():
 func _on_ScreenButton_pressed():
 	 emit_signal("screen_button")
 
+func on_pause_key_pressed():
+	print("key pressed")
+	$Pause._on_ToggleBtn_toggled()
 
-func _on_Pause_pressed():
+func on_Pause_pressed(new_state):
+	print("pause game: "+ str(new_state))
+	if(new_state):
+		print("grab")
+		$Pause.grab_focus()
+	else:
+		print("release")
+		$Pause.release_focus()
 	emit_signal("pause")
+
 
 
 func toggle_music(new_state):
@@ -68,3 +79,5 @@ func toggle_music(new_state):
 
 func _on_Credits_pressed():
 	$CreditsWindow.visible = !$CreditsWindow.visible
+	if($CreditsWindow.visible):
+		$CreditsWindow.grab_focus()
