@@ -1,0 +1,204 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://HUD/HUD.tres" type="Theme" id=1]
+[ext_resource path="res://HUD/HUD.gd" type="Script" id=2]
+[ext_resource path="res://assets/fonts/clover-sans.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://HUD/Toggle_btn.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/images/HUD/sound on.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/HUD/sound off.png" type="Texture" id=6]
+[ext_resource path="res://assets/images/HUD/pause.png" type="Texture" id=7]
+[ext_resource path="res://assets/images/HUD/play.png" type="Texture" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="Theme" id=3]
+Button/styles/disabled = SubResource( 6 )
+Button/styles/focus = SubResource( 7 )
+Button/styles/hover = SubResource( 8 )
+Button/styles/normal = SubResource( 1 )
+Button/styles/pressed = SubResource( 2 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 11
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 12
+font_data = ExtResource( 3 )
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="Score" type="Label" parent="."]
+margin_right = 506.0
+margin_bottom = 44.0
+theme = ExtResource( 1 )
+text = "0123465789"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScreenButton" type="Button" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 2.0
+margin_bottom = 2.0
+theme = SubResource( 3 )
+shortcut_in_tooltip = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -55.0
+margin_top = -24.0
+margin_right = 55.0
+margin_bottom = 24.0
+focus_neighbour_left = NodePath("../Pause")
+focus_neighbour_top = NodePath("../Music")
+focus_neighbour_right = NodePath("../Credits")
+focus_neighbour_bottom = NodePath("../Music")
+focus_next = NodePath("../Credits")
+focus_previous = NodePath("../Pause")
+theme = ExtResource( 1 )
+shortcut_in_tooltip = false
+text = "play"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credits" type="Button" parent="."]
+margin_left = 10.0
+margin_top = 220.0
+margin_right = 84.0
+margin_bottom = 246.0
+focus_neighbour_left = NodePath("../Pause")
+focus_neighbour_top = NodePath("../Button")
+focus_neighbour_right = NodePath("../Music")
+focus_neighbour_bottom = NodePath("../Music")
+focus_next = NodePath("../Music")
+focus_previous = NodePath("../Button")
+theme = ExtResource( 1 )
+custom_fonts/font = SubResource( 9 )
+text = "credits"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pause" parent="." instance=ExtResource( 4 )]
+margin_left = 218.0
+margin_right = 246.0
+focus_neighbour_left = NodePath("../Music")
+focus_neighbour_top = NodePath("../Button")
+focus_neighbour_right = NodePath("../Credits")
+focus_neighbour_bottom = NodePath("../Button")
+focus_next = NodePath("../Button")
+focus_previous = NodePath("../Music")
+focus_mode = 2
+on_icon = ExtResource( 7 )
+off_icon = ExtResource( 8 )
+
+[node name="Music" parent="." instance=ExtResource( 4 )]
+focus_neighbour_left = NodePath("../Credits")
+focus_neighbour_top = NodePath("../Button")
+focus_neighbour_right = NodePath("../Pause")
+focus_neighbour_bottom = NodePath("../Button")
+focus_next = NodePath("../Pause")
+focus_previous = NodePath("../Credits")
+focus_mode = 2
+on_icon = ExtResource( 5 )
+off_icon = ExtResource( 6 )
+
+[node name="CreditsWindow" type="WindowDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -136.0
+margin_top = -68.0
+margin_right = 136.0
+margin_bottom = 76.0
+theme = ExtResource( 1 )
+window_title = "credits"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="CreditsText" type="RichTextLabel" parent="CreditsWindow"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 2.0
+theme = ExtResource( 1 )
+custom_fonts/normal_font = SubResource( 10 )
+bbcode_enabled = true
+bbcode_text = "
+[center][i]creator[/i][/center]
+
+[center]wicling a.k.a. bengeendokter[/center]
+
+[center][i]itch assets[/i][/center]
+
+background: Pixel Art Infinite Runner - Pack by edermunizz
+
+font: Clover Sans by LemmaEOF
+
+music: journey village by Michael
+
+dragon sprite: Vimlark Asset Pack by Vimlark
+
+[center][i]Special Thanks[/i][/center]
+
+[center]Yoranator[/center]
+"
+text = "
+creator
+
+wicling a.k.a. bengeendokter
+
+itch assets
+
+background: Pixel Art Infinite Runner - Pack by edermunizz
+
+font: Clover Sans by LemmaEOF
+
+music: journey village by Michael
+
+dragon sprite: Vimlark Asset Pack by Vimlark
+
+Special Thanks
+
+Yoranator
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="ScreenButton" to="." method="_on_ScreenButton_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Credits" to="." method="_on_Credits_pressed"]
+[connection signal="new_state" from="Pause" to="." method="on_Pause_pressed"]
+[connection signal="new_state" from="Music" to="." method="toggle_music"]

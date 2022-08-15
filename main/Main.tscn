@@ -1,0 +1,176 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://main/Parallax.gd" type="Script" id=1]
+[ext_resource path="res://main/Main.gd" type="Script" id=2]
+[ext_resource path="res://assets/images/background/Volcano Night anim. 02.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/background/Volcano Night Layer 06.png" type="Texture" id=4]
+[ext_resource path="res://assets/images/background/Volcano Night Layer 05.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/background/Volcano Night Layer 02.png" type="Texture" id=6]
+[ext_resource path="res://assets/images/background/Volcano Night anim. 01.png" type="Texture" id=7]
+[ext_resource path="res://assets/images/background/Volcano Night Layer 07.png" type="Texture" id=8]
+[ext_resource path="res://assets/images/background/Volcano Night Layer 01.png" type="Texture" id=9]
+[ext_resource path="res://assets/images/background/Volcano Night Layer 08.png" type="Texture" id=10]
+[ext_resource path="res://assets/images/background/Volcano Night Layer 04.png" type="Texture" id=11]
+[ext_resource path="res://assets/music/journey village loop.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/images/background/Volcano Night anim. 03.png" type="Texture" id=13]
+[ext_resource path="res://player/Player.tscn" type="PackedScene" id=14]
+[ext_resource path="res://HUD/HUD.tscn" type="PackedScene" id=15]
+[ext_resource path="res://HUD/Pause.gd" type="Script" id=16]
+[ext_resource path="res://mob/Mob.tscn" type="PackedScene" id=17]
+[ext_resource path="res://main/Input.gd" type="Script" id=18]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 3 ), ExtResource( 13 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 3.0
+} ]
+
+[node name="Main" type="Node"]
+script = ExtResource( 2 )
+mob_scene = ExtResource( 17 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+offset = Vector2( 256, 128 )
+transform = Transform2D( 1, 0, 0, 1, 256, 128 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0, 1 )
+
+[node name="VulcanoAnimation" type="AnimatedSprite" parent="ParallaxBackground/ParallaxLayer"]
+frames = SubResource( 2 )
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground" groups=["parallax"]]
+motion_mirroring = Vector2( 512, 0 )
+script = ExtResource( 1 )
+RELATIVE_SPEED = -2.0
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource( 9 )
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground" groups=["parallax"]]
+motion_mirroring = Vector2( 512, 0 )
+script = ExtResource( 1 )
+RELATIVE_SPEED = -3.0
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource( 6 )
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground" groups=["parallax"]]
+motion_mirroring = Vector2( 512, 0 )
+script = ExtResource( 1 )
+RELATIVE_SPEED = -5.0
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer4"]
+texture = ExtResource( 6 )
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground" groups=["parallax"]]
+motion_mirroring = Vector2( 512, 0 )
+script = ExtResource( 1 )
+RELATIVE_SPEED = -7.0
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer5"]
+texture = ExtResource( 11 )
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground" groups=["parallax"]]
+motion_mirroring = Vector2( 512, 0 )
+script = ExtResource( 1 )
+RELATIVE_SPEED = -9.0
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer6"]
+texture = ExtResource( 5 )
+
+[node name="ParallaxLayer7" type="ParallaxLayer" parent="ParallaxBackground" groups=["parallax"]]
+motion_mirroring = Vector2( 512, 0 )
+script = ExtResource( 1 )
+RELATIVE_SPEED = -11.0
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer7"]
+texture = ExtResource( 4 )
+
+[node name="ParallaxLayer8" type="ParallaxLayer" parent="ParallaxBackground" groups=["parallax"]]
+motion_mirroring = Vector2( 512, 0 )
+script = ExtResource( 1 )
+RELATIVE_SPEED = -13.0
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer8"]
+texture = ExtResource( 8 )
+
+[node name="ParallaxLayer9" type="ParallaxLayer" parent="ParallaxBackground" groups=["parallax"]]
+motion_mirroring = Vector2( 512, 0 )
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer9"]
+texture = ExtResource( 10 )
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+
+[node name="Player" parent="." instance=ExtResource( 14 )]
+visible = false
+position = Vector2( -64, 64 )
+z_index = 1
+
+[node name="Postitions" type="Node" parent="."]
+
+[node name="SpawnPosPlayer" type="Position2D" parent="Postitions"]
+position = Vector2( -64, 64 )
+
+[node name="UpPosPlayer" type="Position2D" parent="Postitions"]
+position = Vector2( 96, 64 )
+
+[node name="UpPosMob" type="Position2D" parent="Postitions"]
+position = Vector2( 576, 64 )
+
+[node name="DownPosPlayer" type="Position2D" parent="Postitions"]
+position = Vector2( 96, 192 )
+
+[node name="DownPosMob" type="Position2D" parent="Postitions"]
+position = Vector2( 576, 192 )
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="MobTimer" type="Timer" parent="Timers"]
+wait_time = 2.0
+
+[node name="DifficultyTimer" type="Timer" parent="Timers"]
+wait_time = 4.0
+
+[node name="ScoreTimer" type="Timer" parent="Timers"]
+
+[node name="PauseLayer" type="CanvasLayer" parent="."]
+
+[node name="Pause" type="Control" parent="PauseLayer"]
+pause_mode = 2
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BlackOverlay" type="ColorRect" parent="PauseLayer/Pause"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.352941 )
+
+[node name="HUD" parent="." instance=ExtResource( 15 )]
+pause_mode = 2
+layer = 2
+
+[node name="Input" type="Node" parent="."]
+pause_mode = 2
+script = ExtResource( 18 )
+
+[connection signal="hit" from="Player" to="." method="game_over"]
+[connection signal="timeout" from="Timers/MobTimer" to="." method="_on_MobTimer_timeout"]
+[connection signal="timeout" from="Timers/DifficultyTimer" to="." method="_on_DifficultyTimer_timeout"]
+[connection signal="timeout" from="Timers/ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
+[connection signal="pause" from="HUD" to="." method="pause"]
+[connection signal="screen_button" from="HUD" to="." method="move_player"]
+[connection signal="start_game" from="HUD" to="." method="start_game"]
+[connection signal="toggle_music" from="HUD" to="." method="toggle_music"]
+[connection signal="move_player" from="Input" to="." method="move_player"]
+[connection signal="pause" from="Input" to="HUD" method="on_pause_key_pressed"]

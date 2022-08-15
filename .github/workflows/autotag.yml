@@ -1,0 +1,75 @@
+name: "Auto Increase Tag"
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  major-check:
+    name: 🥇Major Release Check
+    if: ${{startsWith(github.event.head_commit.message, 'r:')}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: ✅Checkout
+        uses: actions/checkout@v2
+
+  minor-check:
+    name: 🥈Minor Release Check
+    if: ${{startsWith(github.event.head_commit.message, 'f:')}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: ✅Checkout
+        uses: actions/checkout@v2
+
+  patch-check:
+    name: 🥉Patch Release Check
+    if: ${{startsWith(github.event.head_commit.message, 'p:')}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: ✅Checkout
+        uses: actions/checkout@v2
+
+  major-bump:
+      needs:
+      - major-check
+      name: ⬆️Major Release Bump
+      runs-on: ubuntu-latest
+      strategy:
+        matrix:
+          node-version: 
+          - 12
+      steps: 
+      - uses: phish108/autotag-action@1.1.51
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN}}
+          bump: "major"
+          
+  minor-bump:
+      needs:
+      - minor-check
+      name: ⬆️Minor Release Bump
+      runs-on: ubuntu-latest
+      strategy:
+        matrix:
+          node-version: 
+          - 12
+      steps: 
+      - uses: phish108/autotag-action@1.1.51
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN}}
+          bump: "minor"
+
+  patch-bump:
+      needs:
+      - patch-check
+      name: ⬆️Patch Release Bump
+      runs-on: ubuntu-latest
+      strategy:
+        matrix:
+          node-version: 
+          - 12
+      steps: 
+      - uses: phish108/autotag-action@1.1.51
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN}}
+          bump: "patch"

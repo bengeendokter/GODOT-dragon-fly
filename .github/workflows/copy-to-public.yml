@@ -1,0 +1,22 @@
+name: "Copy to Public"
+on:
+  push:
+    branches:
+      - 'main'
+jobs:
+  copy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Copycat
+      uses: andstor/copycat-action@v3
+      with:
+        personal_token: ${{ secrets.PERSONAL_TOKEN }}
+        src_path: /.
+        exclude: assets/*
+        dst_owner: bengeendokter
+        dst_repo_name: GODOT-dragon-fly
+        dst_branch: main
+        src_branch: main
+        username: bengeendokter
+        email: 45427540+bengeendokter@users.noreply.github.com
+        commit_message: ${{ github.event.head_commit.message }}
